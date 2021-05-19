@@ -1,11 +1,13 @@
 import React from 'react';
-import {Container} from 'react-bootstrap';
+import AppContainer from './components/AppContainer';
+import AppNav from './components/AppNav';
 
 function App() {
   return (
-    <Container fluid className='d-flex justify-content-center'>
-      <p className='display-5'>Shopping List</p>
-    </Container>
+    <React.Fragment className='app'>
+      <AppNav />
+      <AppContainer />
+    </React.Fragment>
   );
 }
 

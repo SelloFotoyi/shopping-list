@@ -14,7 +14,7 @@ import {
 const AppNav = () => {
   const [toggler, setToggler] = useState(false);
   return (
-    <Navbar bg='light' expand='lg' className='px-3 d-flex'>
+    <Navbar expand='lg' className='px-3 d-flex app-nav fixed-top'>
       <Navbar.Brand>
         <FontAwesomeIcon icon={faCalculator} className='me-2' />
         <span style={{fontWeight: 'bold'}}>0.00</span>
@@ -29,11 +29,11 @@ const AppNav = () => {
       </div>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
-        <Nav className='ml-auto d-lg-none py-2'>
+        <Nav className='ml-auto d-lg-none py-2 app-nav-mobile'>
           <Nav.Item
             as={Button}
             variant='outline-secondary'
-            className='d-flex align-items-center my-1'
+            className='d-flex align-items-center my-1 rounded-pill'
           >
             <FontAwesomeIcon icon={faPlus} className='me-2' />
             <span className>Add item</span>
@@ -64,13 +64,14 @@ const AppNav = () => {
                   type='radio'
                   name='sort'
                   id='totalDesc'
+                  class='form-check-input'
                   // onChange={(e) => {
                   //   if (e.target.checked) {
                   //     setSortType(e.target.value);
                   //   }
                   // }}
                 />
-                <label htmlFor='totalDesc' className='ms-2'>
+                <label htmlFor='totalDesc' className='ms-2 mb-0'>
                   item total price <span>(highest to lowest)</span>
                 </label>
               </Button>
@@ -82,13 +83,14 @@ const AppNav = () => {
                   type='radio'
                   name='sort'
                   id='totalAsc'
+                  class='form-check-input'
                   // onChange={(e) => {
                   //   if (e.target.checked) {
                   //     setSortType(e.target.value);
                   //   }
                   // }}
                 />
-                <label htmlFor='totalAsc' className='ms-2'>
+                <label htmlFor='totalAsc' className='ms-2 mb-0'>
                   item total price <span>(lowest to highest)</span>
                 </label>
               </Button>

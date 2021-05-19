@@ -13,10 +13,10 @@ const Aside = () => {
   const [toggler, setToggler] = useState(false);
 
   return (
-    <Container fluid className='pt-5'>
+    <Container fluid className='pt-5 position-fixed'>
       <div className='d-flex align-items-center my-2 p-2 rounded-pill aside-row'>
         <FontAwesomeIcon icon={faPlus} className='me-4 ms-2 aside-icon' />
-        <span className='h4 mb-0'>Add item</span>
+        <span className='h5 mb-0'>Add item</span>
       </div>
       <div
         className='d-flex align-items-center my-2 p-2 rounded-pill  aside-row'
@@ -30,7 +30,7 @@ const Aside = () => {
           icon={faSortAmountDown}
           className='me-4 ms-2 aside-icon'
         />
-        <span className='h4 mb-0'>Sort items by</span>
+        <span className='h5 mb-0'>Sort items by</span>
       </div>
       <div
         className={`${toggler ? 'collapse' : 'collapse.show'} `}
@@ -52,8 +52,8 @@ const Aside = () => {
               //   }
               // }}
             />
-            <label htmlFor='totalDesc' className='ms-2 h5 mb-0'>
-              item total price <span>(highest to lowest)</span>
+            <label htmlFor='totalDesc' className='ms-2 h6 mb-0'>
+              Total price <i>(descending)</i>
             </label>
           </Button>
           <Button
@@ -71,19 +71,19 @@ const Aside = () => {
               //   }
               // }}
             />
-            <label htmlFor='totalAsc' className='ms-2 h5 mb-0'>
-              item total price <span>(lowest to highest)</span>
+            <label htmlFor='totalAsc' className='ms-2 h6 mb-0'>
+              Total price <i>(ascending)</i>
             </label>
           </Button>
         </div>
       </div>
       <div className='d-flex align-items-center my-2 p-2 rounded-pill w-51 aside-row'>
         <FontAwesomeIcon icon={faBackspace} className='me-4 ms-2 aside-icon' />
-        <span className='h4 mb-0'>Delete checked items</span>
+        <span className='h5 mb-0'>Delete checked items</span>
       </div>
       <div className='d-flex align-items-center my-2 p-2 rounded-pill w-51 aside-row'>
         <FontAwesomeIcon icon={faTrash} className='me-4 ms-2 aside-icon' />
-        <span className='h4 mb-0'>Delete all items</span>
+        <span className='h5 mb-0'>Delete all items</span>
       </div>
     </Container>
   );
