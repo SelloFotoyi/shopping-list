@@ -12,24 +12,11 @@ const AddItem = () => {
   let floatQty = 0.0;
   let floatUnitPrice = 0.0;
 
-  const [item, setItem] = useState({
-    name,
-    qty,
-    unitPrice,
-    isCheck: false,
-    id: uuidv4(),
-    totalPrice: 0.0,
-  });
-
   useEffect(() => {
     if (!isNaN(floatQty) || !isNaN(floatUnitPrice)) {
       floatQty = parseFloat(qty).toFixed(2);
       floatUnitPrice = parseFloat(unitPrice).toFixed(2);
       setTotalPrice(floatQty * floatUnitPrice);
-      // setItem({
-      //   ...item,
-      //   totalPrice: floatQty * floatUnitPrice,
-      // });
     }
   }, [qty, unitPrice]);
 
@@ -39,10 +26,6 @@ const AddItem = () => {
     } else {
       setName(e.target.value);
     }
-    setItem({
-      ...item,
-      [e.target.name]: e.target.value,
-    });
   };
 
   const handleQty = (e) => {
@@ -51,10 +34,6 @@ const AddItem = () => {
     } else {
       setQty(e.target.value);
     }
-    setItem({
-      ...item,
-      [e.target.name]: parseFloat(e.target.value),
-    });
   };
 
   const handleUnitPrice = (e) => {
@@ -63,10 +42,6 @@ const AddItem = () => {
     } else {
       setUnitPrice(e.target.value);
     }
-    setItem({
-      ...item,
-      [e.target.name]: parseFloat(e.target.value).toFixed(2),
-    });
   };
 
   const handleSubmit = (e) => {
@@ -91,8 +66,10 @@ const AddItem = () => {
         totalPrice,
         id: uuidv4(),
       });
+      setName('');
       setQty('');
       setUnitPrice('');
+      setTotalPrice('');
       closeModal();
       console.log(
         `item name: ${name}
@@ -115,17 +92,7 @@ const AddItem = () => {
               maxLength='18'
               placeholder='Name'
               value={name}
-              onChange={(e) => {
-                if (e.target.value.length > 20) {
-                  setName(`${e.target.value.substring(0, 20)} ...`);
-                } else {
-                  setName(e.target.value);
-                }
-                setItem({
-                  ...item,
-                  [e.target.name]: e.target.value,
-                });
-              }}
+              onChange={handleName}
             />
             <FormLabel htmlFor='name'>Name</FormLabel>
           </Form.Group>

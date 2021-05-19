@@ -20,7 +20,7 @@ const Item = ({item}) => {
       </Card.Body>
       <Card.Footer className='d-flex justify-content-between bg-secondary text-white'>
         <div className='d-flex flex-column align-items-center justify-content-start'>
-          <p className='mb-0'>Item price</p>
+          <p className='mb-0'>Unit price</p>
           <p className='mb-0'>{item.unitPrice}</p>
         </div>
         <div className='d-flex flex-column align-items-center justify-content-start'>

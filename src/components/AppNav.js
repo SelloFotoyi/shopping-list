@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+import {ItemContext} from '../context/ItemContextProvider';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {Container, Navbar, Nav, Accordion, Card, Button} from 'react-bootstrap';
 import {
@@ -12,12 +13,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const AppNav = () => {
+  const {total} = useContext(ItemContext);
   const [toggler, setToggler] = useState(false);
   return (
     <Navbar expand='lg' className='px-3 d-flex app-nav fixed-top'>
       <Navbar.Brand>
         <FontAwesomeIcon icon={faCalculator} className='me-2' />
-        <span style={{fontWeight: 'bold'}}>0.00</span>
+        <span style={{fontWeight: 'bold'}}>{total}</span>
       </Navbar.Brand>
       <Container className='d-none d-lg-flex justify-content-lg-end'>
         <FontAwesomeIcon icon={faCheck} className='me-2' />

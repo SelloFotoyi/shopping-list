@@ -5,6 +5,7 @@ export const ItemContext = createContext();
 const ItemContextProvider = (props) => {
   const [item, addItem] = useState({});
   const [items, setItems] = useState([]);
+  const [total, setTotal] = useState(0.0);
   const [modalState, setModalState] = useState(false);
 
   useEffect(() => {
@@ -12,7 +13,14 @@ const ItemContextProvider = (props) => {
       setItems([item, ...items]);
       addItem({});
     }
-  }, [item]);
+    if (items) {
+      let i = 0.0;
+      items.forEach((item) => {
+        i += item.totalPrice;
+      });
+      setTotal(i);
+    }
+  }, [item, items]);
 
   const openModal = () => {
     console.log('open modal');
@@ -25,7 +33,7 @@ const ItemContextProvider = (props) => {
 
   return (
     <ItemContext.Provider
-      value={{item, addItem, items, modalState, openModal, closeModal}}
+      value={{item, addItem, items, total, modalState, openModal, closeModal}}
     >
       {props.children}
     </ItemContext.Provider>
