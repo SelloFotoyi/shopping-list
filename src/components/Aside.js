@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {Container, Button} from 'react-bootstrap';
+import {ItemContext} from '../context/ItemContextProvider';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faArrowDown,
@@ -10,11 +11,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const Aside = () => {
+  const {openModal} = useContext(ItemContext);
   const [toggler, setToggler] = useState(false);
 
   return (
     <Container fluid className='pt-5 position-fixed'>
-      <div className='d-flex align-items-center my-2 p-2 rounded-pill aside-row'>
+      <div
+        className='d-flex align-items-center my-2 p-2 rounded-pill aside-row'
+        onClick={openModal}
+      >
         <FontAwesomeIcon icon={faPlus} className='me-4 ms-2 aside-icon' />
         <span className='h5 mb-0'>Add item</span>
       </div>
@@ -45,7 +50,7 @@ const Aside = () => {
               type='radio'
               name='sort'
               id='totalDesc'
-              class='form-check-input'
+              className='form-check-input'
               // onChange={(e) => {
               //   if (e.target.checked) {
               //     setSortType(e.target.value);
@@ -64,7 +69,7 @@ const Aside = () => {
               type='radio'
               name='sort'
               id='totalAsc'
-              class='form-check-input'
+              className='form-check-input'
               // onChange={(e) => {
               //   if (e.target.checked) {
               //     setSortType(e.target.value);

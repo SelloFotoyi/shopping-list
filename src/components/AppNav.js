@@ -36,7 +36,7 @@ const AppNav = () => {
             className='d-flex align-items-center my-1 rounded-pill'
           >
             <FontAwesomeIcon icon={faPlus} className='me-2' />
-            <span className>Add item</span>
+            <span className=''>Add item</span>
           </Nav.Item>
           <Nav.Item
             as={Button}
@@ -64,7 +64,7 @@ const AppNav = () => {
                   type='radio'
                   name='sort'
                   id='totalDesc'
-                  class='form-check-input'
+                  className='form-check-input'
                   // onChange={(e) => {
                   //   if (e.target.checked) {
                   //     setSortType(e.target.value);
@@ -83,7 +83,7 @@ const AppNav = () => {
                   type='radio'
                   name='sort'
                   id='totalAsc'
-                  class='form-check-input'
+                  className='form-check-input'
                   // onChange={(e) => {
                   //   if (e.target.checked) {
                   //     setSortType(e.target.value);

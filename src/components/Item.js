@@ -4,21 +4,15 @@ import Button from 'react-bootstrap/Button';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
 
-const Item = () => {
-  const item = {
-    name: 'Item name',
-    qty: 10,
-    price: 1500000.24,
-    totalPrice: 152.4,
-  };
+const Item = ({item}) => {
   return (
-    <Card className=''>
+    <Card className='mb-2'>
       <Card.Header className='fontweight-bold text-center bg-secondary text-white'>
         Total price: <span style={{fontWeight: 'bold'}}>{item.totalPrice}</span>
       </Card.Header>
       <Card.Body className='d-flex justify-content-between'>
-        <input type='checkbox' id='item-checkbox' className='btn-check' />
-        <label for='item-checkbox' className='btn btn-outline-primary'>
+        <input type='checkbox' id={item.id} className='btn-check' />
+        <label htmlFor={item.id} className='btn btn-outline-secondary'>
           <FontAwesomeIcon icon={faCheck} />
         </label>
         <Card.Title className='text-center'>{item.name}</Card.Title>
@@ -27,7 +21,7 @@ const Item = () => {
       <Card.Footer className='d-flex justify-content-between bg-secondary text-white'>
         <div className='d-flex flex-column align-items-center justify-content-start'>
           <p className='mb-0'>Item price</p>
-          <p className='mb-0'>{item.price}</p>
+          <p className='mb-0'>{item.unitPrice}</p>
         </div>
         <div className='d-flex flex-column align-items-center justify-content-start'>
           <p className='mb-0'>Qty</p>
