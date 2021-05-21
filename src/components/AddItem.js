@@ -5,14 +5,31 @@ import {ModalContext} from '../context/ModalContextProvider';
 import {Button, Form, FormControl, FormLabel, Modal} from 'react-bootstrap';
 
 const AddItem = () => {
-  const {addModalState, closeModal} = useContext(ModalContext);
-  const {addItem} = useContext(ItemContext);
+  const {addModalState, closeModal, itemEdit, resetEditModal} =
+    useContext(ModalContext);
+  const {addItem, setIsEdit} = useContext(ItemContext);
   const [name, setName] = useState('');
   const [unitPrice, setUnitPrice] = useState('');
   const [qty, setQty] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0.0);
+  const [id, setId] = useState('');
+  const [isCheck, setIsCheck] = useState(false);
   let floatQty = 0.0;
   let floatUnitPrice = 0.0;
+
+  useEffect(() => {
+    if (Object.keys(itemEdit).length !== 0) {
+      setIsEdit(true);
+      setName(itemEdit.name);
+      setUnitPrice(itemEdit.unitPrice);
+      setQty(itemEdit.qty);
+      setTotalPrice(itemEdit.totalPrice);
+      setId(itemEdit.id);
+      setIsCheck(itemEdit.isCheck);
+    } else if (Object.keys(itemEdit).length === 0) {
+      setId(uuidv4());
+    }
+  }, []);
 
   useEffect(() => {
     if (!isNaN(floatQty) || !isNaN(floatUnitPrice)) {
@@ -66,9 +83,10 @@ const AddItem = () => {
         unitPrice,
         qty,
         totalPrice,
-        id: uuidv4(),
-        isCheck: false,
+        id,
+        isCheck,
       });
+      resetEditModal();
       setName('');
       setQty('');
       setUnitPrice('');

@@ -1,18 +1,25 @@
 import React, {useState, useContext} from 'react';
 import {Card, Button} from 'react-bootstrap';
 import {ItemContext} from '../context/ItemContextProvider';
+import {ModalContext} from '../context/ModalContextProvider';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
 
 const Item = ({item}) => {
-  const {removeItem, toggleCheck} = useContext(ItemContext);
+  const {removeItem, toggleCheck, setIsEdit} = useContext(ItemContext);
+  const {setEditModal} = useContext(ModalContext);
+
+  const handleItemEdit = () => {
+    setIsEdit(true);
+    setEditModal(item);
+  };
   return (
     <Card className='mb-2'>
       <Card.Header className='fontweight-bold text-center bg-secondary text-white'>
         Total price: <span style={{fontWeight: 'bold'}}>{item.totalPrice}</span>
       </Card.Header>
       <Card.Body className='d-flex justify-content-between'>
-        <input type='checkbox' id={item.id} className='btn-check' />
+        <input type='checkbox' id={item.id} className='btn-check mb-0' />
         <label
           onClick={() => {
             toggleCheck(item.id);
@@ -22,7 +29,13 @@ const Item = ({item}) => {
         >
           <FontAwesomeIcon icon={faCheck} />
         </label>
-        <Card.Title className='text-center'>{item.name}</Card.Title>
+        <Card.Title
+          onClick={handleItemEdit}
+          className='text-center'
+          style={{cursor: 'pointer'}}
+        >
+          {item.name}
+        </Card.Title>
         <div
           className='btn btn-outline-danger'
           onClick={() => {

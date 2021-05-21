@@ -6,6 +6,16 @@ const ModalContextProvider = (props) => {
   const [addModalState, setAddModalState] = useState(false);
   const [deleteModalState, setDeleteModalState] = useState(false);
   const [deleteType, setDeleteType] = useState('');
+  const [itemEdit, setItemEdit] = useState({});
+
+  const setEditModal = (item) => {
+    setItemEdit(item);
+    openAddModal();
+  };
+
+  const resetEditModal = () => {
+    setItemEdit({});
+  };
 
   const openAddModal = () => {
     setAddModalState(true);
@@ -23,10 +33,13 @@ const ModalContextProvider = (props) => {
         addModalState,
         deleteModalState,
         deleteType,
+        itemEdit,
         setDeleteType,
         openAddModal,
         openDeleteModal,
         closeModal,
+        setEditModal,
+        resetEditModal,
       }}
     >
       {props.children}
