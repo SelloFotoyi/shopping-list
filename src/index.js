@@ -4,12 +4,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import ItemContextProvider from './context/ItemContextProvider';
+import ModalContextProvider from './context/ModalContextProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ItemContextProvider>
-      <App />
-    </ItemContextProvider>
+    <ModalContextProvider>
+      <ItemContextProvider>
+        <App />
+      </ItemContextProvider>
+    </ModalContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

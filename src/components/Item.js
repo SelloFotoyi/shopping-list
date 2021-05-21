@@ -1,10 +1,11 @@
-import React from 'react';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import React, {useState, useContext} from 'react';
+import {Card, Button} from 'react-bootstrap';
+import {ItemContext} from '../context/ItemContextProvider';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
 
 const Item = ({item}) => {
+  const {removeItem, toggleCheck} = useContext(ItemContext);
   return (
     <Card className='mb-2'>
       <Card.Header className='fontweight-bold text-center bg-secondary text-white'>
@@ -12,11 +13,24 @@ const Item = ({item}) => {
       </Card.Header>
       <Card.Body className='d-flex justify-content-between'>
         <input type='checkbox' id={item.id} className='btn-check' />
-        <label htmlFor={item.id} className='btn btn-outline-secondary'>
+        <label
+          onClick={() => {
+            toggleCheck(item.id);
+          }}
+          htmlFor={item.id}
+          className='btn btn-outline-secondary'
+        >
           <FontAwesomeIcon icon={faCheck} />
         </label>
         <Card.Title className='text-center'>{item.name}</Card.Title>
-        <Button variant='outline-danger'>&times;</Button>
+        <div
+          className='btn btn-outline-danger'
+          onClick={() => {
+            removeItem(item.id);
+          }}
+        >
+          &times;
+        </div>
       </Card.Body>
       <Card.Footer className='d-flex justify-content-between bg-secondary text-white'>
         <div className='d-flex flex-column align-items-center justify-content-start'>

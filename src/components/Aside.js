@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import {Container, Button} from 'react-bootstrap';
-import {ItemContext} from '../context/ItemContextProvider';
+import {ModalContext} from '../context/ModalContextProvider';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faArrowDown,
@@ -11,14 +11,20 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const Aside = () => {
-  const {openModal} = useContext(ItemContext);
+  const {openAddModal, openDeleteModal, setDeleteType} =
+    useContext(ModalContext);
   const [toggler, setToggler] = useState(false);
+
+  const handleDelete = (deleteType) => {
+    setDeleteType(deleteType);
+    openDeleteModal();
+  };
 
   return (
     <Container fluid className='pt-5 position-fixed'>
       <div
         className='d-flex align-items-center my-2 p-2 rounded-pill aside-row'
-        onClick={openModal}
+        onClick={openAddModal}
       >
         <FontAwesomeIcon icon={faPlus} className='me-4 ms-2 aside-icon' />
         <span className='h5 mb-0'>Add item</span>
@@ -82,11 +88,17 @@ const Aside = () => {
           </Button>
         </div>
       </div>
-      <div className='d-flex align-items-center my-2 p-2 rounded-pill w-51 aside-row'>
+      <div
+        onClick={() => handleDelete('checked')}
+        className='d-flex align-items-center my-2 p-2 rounded-pill w-51 aside-row'
+      >
         <FontAwesomeIcon icon={faBackspace} className='me-4 ms-2 aside-icon' />
         <span className='h5 mb-0'>Delete checked items</span>
       </div>
-      <div className='d-flex align-items-center my-2 p-2 rounded-pill w-51 aside-row'>
+      <div
+        onClick={() => handleDelete('all')}
+        className='d-flex align-items-center my-2 p-2 rounded-pill w-51 aside-row'
+      >
         <FontAwesomeIcon icon={faTrash} className='me-4 ms-2 aside-icon' />
         <span className='h5 mb-0'>Delete all items</span>
       </div>

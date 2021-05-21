@@ -6,7 +6,6 @@ const ItemContextProvider = (props) => {
   const [item, addItem] = useState({});
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0.0);
-  const [modalState, setModalState] = useState(false);
 
   useEffect(() => {
     if (Object.keys(item).length !== 0) {
@@ -22,18 +21,41 @@ const ItemContextProvider = (props) => {
     }
   }, [item, items]);
 
-  const openModal = () => {
-    console.log('open modal');
-    setModalState(true);
+  const removeItem = (id) => {
+    setItems(items.filter((item) => item.id !== id));
   };
-  const closeModal = () => {
-    console.log('close modal');
-    setModalState(false);
+
+  const removeCheckedItems = () => {
+    setItems(items.filter((item) => !item.isCheck));
+  };
+
+  const toggleCheck = (id) => {
+    setItems(
+      items.map((item) => {
+        if (id === item.id) {
+          item.isCheck = !item.isCheck;
+        }
+        return item;
+      })
+    );
+  };
+
+  const clearItems = () => {
+    setItems([]);
   };
 
   return (
     <ItemContext.Provider
-      value={{item, addItem, items, total, modalState, openModal, closeModal}}
+      value={{
+        item,
+        items,
+        total,
+        addItem,
+        toggleCheck,
+        removeItem,
+        removeCheckedItems,
+        clearItems,
+      }}
     >
       {props.children}
     </ItemContext.Provider>
