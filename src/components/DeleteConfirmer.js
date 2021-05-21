@@ -5,11 +5,13 @@ import {ItemContext} from '../context/ItemContextProvider';
 
 const DeleteConfirmer = () => {
   const {deleteModalState, closeModal, deleteType} = useContext(ModalContext);
-  const {removeCheckedItems, clearItems} = useContext(ItemContext);
+  const {removeCheckedItems, clearItems, resetTotalCheckedItems} =
+    useContext(ItemContext);
 
   const handleDelete = () => {
     if (deleteType == 'checked') {
       removeCheckedItems();
+      resetTotalCheckedItems();
       closeModal();
     } else if (deleteType == 'all') {
       clearItems();

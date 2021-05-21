@@ -13,7 +13,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const AppNav = () => {
-  const {total} = useContext(ItemContext);
+  const {total, items, totalCheckedItems} = useContext(ItemContext);
   const [toggler, setToggler] = useState(false);
   return (
     <Navbar expand='lg' className='px-3 d-flex app-nav fixed-top'>
@@ -23,11 +23,15 @@ const AppNav = () => {
       </Navbar.Brand>
       <Container className='d-none d-lg-flex justify-content-lg-end'>
         <FontAwesomeIcon icon={faCheck} className='me-2' />
-        <span style={{fontStyle: 'italic'}}>5/7</span>
+        <span style={{fontStyle: 'italic'}}>
+          {totalCheckedItems}/{items.length}
+        </span>
       </Container>
       <div className='d-lg-none'>
         <FontAwesomeIcon icon={faCheck} className='me-2' />
-        <span style={{fontStyle: 'italic'}}>5/7</span>
+        <span style={{fontStyle: 'italic'}}>
+          {totalCheckedItems}/{items.length}
+        </span>
       </div>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>

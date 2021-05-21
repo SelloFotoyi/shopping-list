@@ -6,6 +6,7 @@ const ItemContextProvider = (props) => {
   const [item, addItem] = useState({});
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0.0);
+  const [totalCheckedItems, setTotalCheckedItems] = useState(0);
 
   useEffect(() => {
     if (Object.keys(item).length !== 0) {
@@ -31,13 +32,24 @@ const ItemContextProvider = (props) => {
 
   const toggleCheck = (id) => {
     setItems(
-      items.map((item) => {
-        if (id === item.id) {
-          item.isCheck = !item.isCheck;
+      items.map((current_item) => {
+        if (id === current_item.id) {
+          current_item.isCheck = !current_item.isCheck;
+          handleTotalChecked(current_item);
         }
-        return item;
+        return current_item;
       })
     );
+  };
+  const handleTotalChecked = (current_item) => {
+    if (current_item.isCheck) {
+      setTotalCheckedItems(totalCheckedItems + 1);
+    } else {
+      setTotalCheckedItems(totalCheckedItems - 1);
+    }
+  };
+  const resetTotalCheckedItems = () => {
+    setTotalCheckedItems(0);
   };
 
   const clearItems = () => {
@@ -50,10 +62,12 @@ const ItemContextProvider = (props) => {
         item,
         items,
         total,
+        totalCheckedItems,
         addItem,
         toggleCheck,
         removeItem,
         removeCheckedItems,
+        resetTotalCheckedItems,
         clearItems,
       }}
     >
