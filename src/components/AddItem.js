@@ -1,13 +1,15 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {v4 as uuidv4} from 'uuid';
 import {ItemContext} from '../context/ItemContextProvider';
+import {ModalContext} from '../context/ModalContextProvider';
 import {Button, Form, FormControl, FormLabel, Modal} from 'react-bootstrap';
 
 const AddItem = () => {
-  const {addItem, modalState, closeModal} = useContext(ItemContext);
+  const {addModalState, closeModal} = useContext(ModalContext);
+  const {addItem} = useContext(ItemContext);
   const [name, setName] = useState('');
   const [unitPrice, setUnitPrice] = useState('');
-  const [qty, setQty] = useState('');
+  const [qty, setQty] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0.0);
   let floatQty = 0.0;
   let floatUnitPrice = 0.0;
@@ -65,27 +67,23 @@ const AddItem = () => {
         qty,
         totalPrice,
         id: uuidv4(),
+        isCheck: false,
       });
       setName('');
       setQty('');
       setUnitPrice('');
       setTotalPrice('');
       closeModal();
-      console.log(
-        `item name: ${name}
-         unit pr: ${unitPrice}
-         qty: ${qty}`
-      );
     }
   };
   return (
-    <Modal show={modalState} onHide={closeModal} centered>
+    <Modal show={addModalState} onHide={closeModal} centered>
       <Modal.Header>
         <Modal.Title>Add Item</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
-          <Form.Group className='form-floating mb-2'>
+          <Form.Group className='form-floating mb-2 rounded'>
             <FormControl
               type='text'
               id='name'
@@ -123,8 +121,12 @@ const AddItem = () => {
               </strong>
             </i>
           </p>
-          <Button type='submit' variant='outline-secondary' className='w-100'>
-            Add
+          <Button
+            type='submit'
+            variant='outline-secondary'
+            className='w-100 rounded h2'
+          >
+            <b>Add</b>
           </Button>
         </Form>
       </Modal.Body>
