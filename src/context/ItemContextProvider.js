@@ -18,8 +18,18 @@ const ItemContextProvider = (props) => {
 
   useEffect(() => {
     if (Object.keys(item).length !== 0 && !isEdit) {
-      setItems([item, ...items]);
-      addItem({});
+      if (items.length !== 0) {
+        if (items.find((ex_item) => ex_item.name === item.name)) {
+          alert(`${item.name} has already been added`);
+          addItem({});
+        } else {
+          setItems([item, ...items]);
+          addItem({});
+        }
+      } else {
+        setItems([item, ...items]);
+        addItem({});
+      }
     } else if (Object.keys(item).length !== 0 && isEdit) {
       setItems(
         items.map((item_old) => {

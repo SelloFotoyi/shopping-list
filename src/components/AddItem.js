@@ -95,9 +95,18 @@ const AddItem = () => {
     }
   };
   return (
-    <Modal show={addModalState} onHide={closeModal} centered>
+    <Modal
+      show={addModalState}
+      onHide={() => {
+        resetEditModal();
+        closeModal();
+      }}
+      centered
+    >
       <Modal.Header>
-        <Modal.Title>Add Item</Modal.Title>
+        <Modal.Title>
+          {Object.keys(itemEdit).length !== 0 ? 'Edit Item' : 'Add Item'}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
@@ -126,6 +135,7 @@ const AddItem = () => {
             <FormControl
               type='number'
               id='qty'
+              min={1}
               placeholder='Quantity'
               onChange={handleQty}
               value={qty}
