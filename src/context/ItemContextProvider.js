@@ -4,10 +4,17 @@ export const ItemContext = createContext();
 
 const ItemContextProvider = (props) => {
   const [item, addItem] = useState({});
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(() => {
+    const localData = localStorage.getItem('items');
+    return localData ? JSON.parse(localData) : [];
+  });
   const [isEdit, setIsEdit] = useState(false);
   const [total, setTotal] = useState(0.0);
   const [totalCheckedItems, setTotalCheckedItems] = useState(0);
+
+  useEffect(() => {
+    localStorage.setItem('items', JSON.stringify(items));
+  }, [items]);
 
   useEffect(() => {
     if (Object.keys(item).length !== 0 && !isEdit) {
@@ -67,6 +74,13 @@ const ItemContextProvider = (props) => {
     setItems([]);
   };
 
+  const sortByPriceAscending = () => {
+    setItems(items.sort((a, b) => (a.totalPrice > b.totalPrice ? 1 : -1)));
+  };
+  const sortByPriceDescending = () => {
+    setItems(items.sort((a, b) => (a.totalPrice < b.totalPrice ? 1 : -1)));
+  };
+
   return (
     <ItemContext.Provider
       value={{
@@ -82,6 +96,8 @@ const ItemContextProvider = (props) => {
         removeCheckedItems,
         resetTotalCheckedItems,
         clearItems,
+        sortByPriceAscending,
+        sortByPriceDescending,
       }}
     >
       {props.children}

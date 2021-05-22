@@ -5,6 +5,7 @@ export const ModalContext = createContext();
 const ModalContextProvider = (props) => {
   const [addModalState, setAddModalState] = useState(false);
   const [deleteModalState, setDeleteModalState] = useState(false);
+  const [refreshModalState, setRefreshModalState] = useState(false);
   const [deleteType, setDeleteType] = useState('');
   const [itemEdit, setItemEdit] = useState({});
 
@@ -23,9 +24,13 @@ const ModalContextProvider = (props) => {
   const openDeleteModal = () => {
     setDeleteModalState(true);
   };
+  const openRefreshModal = () => {
+    setRefreshModalState(true);
+  };
   const closeModal = () => {
     setAddModalState(false);
     setDeleteModalState(false);
+    setRefreshModalState(false);
   };
   return (
     <ModalContext.Provider
@@ -34,6 +39,8 @@ const ModalContextProvider = (props) => {
         deleteModalState,
         deleteType,
         itemEdit,
+        refreshModalState,
+        openRefreshModal,
         setDeleteType,
         openAddModal,
         openDeleteModal,

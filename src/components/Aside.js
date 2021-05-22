@@ -1,6 +1,7 @@
 import React, {useState, useContext} from 'react';
 import {Container, Button} from 'react-bootstrap';
 import {ModalContext} from '../context/ModalContextProvider';
+import {ItemContext} from '../context/ItemContextProvider';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
   faArrowDown,
@@ -11,8 +12,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const Aside = () => {
-  const {openAddModal, openDeleteModal, setDeleteType} =
+  const {openAddModal, openDeleteModal, setDeleteType, openRefreshModal} =
     useContext(ModalContext);
+  const {sortByPriceAscending, sortByPriceDescending} = useContext(ItemContext);
   const [toggler, setToggler] = useState(false);
 
   const handleDelete = (deleteType) => {
@@ -57,11 +59,12 @@ const Aside = () => {
               name='sort'
               id='totalDesc'
               className='form-check-input'
-              // onChange={(e) => {
-              //   if (e.target.checked) {
-              //     setSortType(e.target.value);
-              //   }
-              // }}
+              onChange={(e) => {
+                if (e.target.checked) {
+                  sortByPriceDescending();
+                  openRefreshModal();
+                }
+              }}
             />
             <label htmlFor='totalDesc' className='ms-2 h6 mb-0'>
               Total price <i>(descending)</i>
@@ -76,11 +79,12 @@ const Aside = () => {
               name='sort'
               id='totalAsc'
               className='form-check-input'
-              // onChange={(e) => {
-              //   if (e.target.checked) {
-              //     setSortType(e.target.value);
-              //   }
-              // }}
+              onChange={(e) => {
+                if (e.target.checked) {
+                  sortByPriceAscending();
+                  openRefreshModal();
+                }
+              }}
             />
             <label htmlFor='totalAsc' className='ms-2 h6 mb-0'>
               Total price <i>(ascending)</i>
