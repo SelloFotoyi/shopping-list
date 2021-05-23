@@ -15,7 +15,7 @@ const Grid = () => {
     </Container>
   );
   return items.length !== 0 ? (
-    <Container fluid className='grid my-3 h-100 border border-secondary'>
+    <Container fluid className='grid my-3 h-100'>
       {items.map((item) => (
         <Item key={item.id} item={item} />
       ))}

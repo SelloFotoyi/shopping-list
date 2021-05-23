@@ -19,7 +19,7 @@ const Item = ({item}) => {
         Total price: <span style={{fontWeight: 'bold'}}>{item.totalPrice}</span>
       </Card.Header>
       <Card.Body className='d-flex justify-content-between'>
-        <input type='checkbox' id={item.id} className='btn-check mb-0' />
+        <input type='checkbox' id={item.id} className='btn-check pt-2' />
         <label
           onClick={() => {
             toggleCheck(item.id);

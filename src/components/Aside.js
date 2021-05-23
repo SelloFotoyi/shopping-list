@@ -4,8 +4,9 @@ import {ModalContext} from '../context/ModalContextProvider';
 import {ItemContext} from '../context/ItemContextProvider';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
-  faArrowDown,
-  faBackspace,
+  // faArrowDown,
+  // faBackspace,
+  faCheckSquare,
   faPlus,
   faSortAmountDown,
   faTrash,
@@ -23,7 +24,7 @@ const Aside = () => {
   };
 
   return (
-    <Container fluid className='pt-5 position-fixed'>
+    <Container fluid className='mt-5 position-fixed aside'>
       <div
         className='d-flex align-items-center my-2 p-2 rounded-pill aside-row'
         onClick={openAddModal}
@@ -96,15 +97,18 @@ const Aside = () => {
         onClick={() => handleDelete('checked')}
         className='d-flex align-items-center my-2 p-2 rounded-pill w-51 aside-row'
       >
-        <FontAwesomeIcon icon={faBackspace} className='me-4 ms-2 aside-icon' />
-        <span className='h5 mb-0'>Delete checked items</span>
+        <FontAwesomeIcon
+          icon={faCheckSquare}
+          className='me-4 ms-2 aside-icon bg-danger'
+        />
+        <span className='h5 mb-0'>Delete checked </span>
       </div>
       <div
         onClick={() => handleDelete('all')}
         className='d-flex align-items-center my-2 p-2 rounded-pill w-51 aside-row'
       >
         <FontAwesomeIcon icon={faTrash} className='me-4 ms-2 aside-icon' />
-        <span className='h5 mb-0'>Delete all items</span>
+        <span className='h5 mb-0'>Delete all</span>
       </div>
     </Container>
   );

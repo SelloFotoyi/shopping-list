@@ -31,6 +31,9 @@ code {
   width: 100%;
   height: 91vh; 
 }
+.aside{ 
+  width:25%; 
+}
 .aside-icon{
   transform: scale(1.5);
 }
@@ -38,13 +41,11 @@ code {
   background-color: rgba(0,0,0,0.4);
   color: rgba(255,255,255,0.4);
   cursor: pointer;
-  width:22%;
-
 }
 .grid{
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   grid-auto-rows: 12rem;
   overflow-y: auto;
 }

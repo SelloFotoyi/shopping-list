@@ -35,7 +35,7 @@ const AppNav = () => {
       </div>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
-        <Nav className='ml-auto d-lg-none py-2 app-nav-mobile'>
+        <Nav className='ml-auto d-lg-none py-2 mt-2 app-nav-mobile'>
           <Nav.Item
             as={Button}
             variant='outline-secondary'
