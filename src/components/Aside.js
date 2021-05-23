@@ -4,8 +4,6 @@ import {ModalContext} from '../context/ModalContextProvider';
 import {ItemContext} from '../context/ItemContextProvider';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
-  // faArrowDown,
-  // faBackspace,
   faCheckSquare,
   faPlus,
   faSortAmountDown,
@@ -101,14 +99,14 @@ const Aside = () => {
           icon={faCheckSquare}
           className='me-4 ms-2 aside-icon bg-danger'
         />
-        <span className='h5 mb-0'>Delete checked </span>
+        <span className='h5 mb-0'>Delete checked items </span>
       </div>
       <div
         onClick={() => handleDelete('all')}
         className='d-flex align-items-center my-2 p-2 rounded-pill w-51 aside-row'
       >
         <FontAwesomeIcon icon={faTrash} className='me-4 ms-2 aside-icon' />
-        <span className='h5 mb-0'>Delete all</span>
+        <span className='h5 mb-0'>Delete all items</span>
       </div>
     </Container>
   );

@@ -16,7 +16,10 @@ const Item = ({item}) => {
   return (
     <Card className='mb-2'>
       <Card.Header className='fontweight-bold text-center bg-secondary text-white'>
-        Total price: <span style={{fontWeight: 'bold'}}>{item.totalPrice}</span>
+        Total price:{' '}
+        <span>
+          <strong>{item.totalPrice.toFixed(2)}</strong>
+        </span>
       </Card.Header>
       <Card.Body className='d-flex justify-content-between'>
         <input type='checkbox' id={item.id} className='btn-check pt-2' />
