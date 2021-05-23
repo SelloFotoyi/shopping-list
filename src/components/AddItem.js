@@ -2,7 +2,15 @@ import React, {useState, useContext, useEffect} from 'react';
 import {v4 as uuidv4} from 'uuid';
 import {ItemContext} from '../context/ItemContextProvider';
 import {ModalContext} from '../context/ModalContextProvider';
-import {Button, Form, FormControl, FormLabel, Modal} from 'react-bootstrap';
+import {
+  Button,
+  Form,
+  FormControl,
+  FormLabel,
+  Modal,
+  Container,
+  FormGroup,
+} from 'react-bootstrap';
 
 const AddItem = () => {
   const {addModalState, closeModal, itemEdit, resetEditModal} =
@@ -149,13 +157,27 @@ const AddItem = () => {
               </strong>
             </i>
           </p>
-          <Button
-            type='submit'
-            variant='outline-secondary'
-            className='w-100 rounded h2'
-          >
-            <b>Add</b>
-          </Button>
+          <FormGroup className='d-flex justify-content-between align-items-center'>
+            <input
+              as={Button}
+              type='text'
+              className='btn btn-rounded btn-outline-dark h2 w-50 mx-1 fw-bold'
+              value='Cancel'
+              onClick={() => {
+                resetEditModal();
+                closeModal();
+              }}
+            />
+
+            <Button
+              type='submit'
+              variant='outline-secondary'
+              className='rounded h2 w-50 mx-1'
+              onClick={() => handleSubmit}
+            >
+              <b>Add</b>
+            </Button>
+          </FormGroup>
         </Form>
       </Modal.Body>
     </Modal>

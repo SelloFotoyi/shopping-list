@@ -14,25 +14,31 @@ const Item = ({item}) => {
     setEditModal(item);
   };
   return (
-    <Card className='mb-2'>
+    <Card style={{maxWidth: '25rem'}} className='mb-2'>
       <Card.Header className='fontweight-bold text-center bg-secondary text-white'>
-        Total price: <span style={{fontWeight: 'bold'}}>{item.totalPrice}</span>
+        Total price:{' '}
+        <span>
+          <strong>{item.totalPrice.toFixed(2)}</strong>
+        </span>
       </Card.Header>
-      <Card.Body className='d-flex justify-content-between'>
-        <input type='checkbox' id={item.id} className='btn-check pt-2' />
-        <label
-          onClick={() => {
-            toggleCheck(item.id);
-          }}
-          htmlFor={item.id}
-          className='btn btn-outline-secondary'
-        >
-          <FontAwesomeIcon icon={faCheck} />
-        </label>
+      <Card.Body className='d-flex justify-content-between align-items-center border'>
+        <div>
+          {' '}
+          <input type='checkbox' id={item.id} className='btn-check pt-2' />
+          <label
+            onClick={() => {
+              toggleCheck(item.id);
+            }}
+            htmlFor={item.id}
+            className='btn btn-outline-secondary'
+          >
+            <FontAwesomeIcon icon={faCheck} />
+          </label>
+        </div>
+
         <Card.Title
           onClick={handleItemEdit}
-          className='text-center'
-          style={{cursor: 'pointer'}}
+          className='text-center mx-2 item-name'
         >
           {item.name}
         </Card.Title>

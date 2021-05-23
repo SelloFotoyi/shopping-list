@@ -27,10 +27,10 @@ const DeleteConfirmer = () => {
       </Modal.Header>
       <Modal.Body>
         Are you sure you want to delete{' '}
-        {deleteType === 'checked' ? 'checked' : 'all'} items
+        {deleteType === 'checked' ? 'checked' : 'all'} items?
       </Modal.Body>
       <Modal.Footer>
-        <Button variant='outline-secondary' onClick={closeModal}>
+        <Button variant='outline-dark' onClick={closeModal}>
           Cancel
         </Button>
         <Button onClick={handleDelete} variant='outline-danger'>

@@ -8,7 +8,7 @@ const Grid = () => {
   const {items} = useContext(ItemContext);
 
   let EmptyGrid = () => (
-    <Container className=' my-3 h-100 border border-secondary d-flex justify-content-center align-items-center'>
+    <Container className='my-3 h-100 d-flex justify-content-center align-items-center border border-secondary'>
       <p className='display-5 text-secondary'>
         Added items will be displayed here...{' '}
       </p>

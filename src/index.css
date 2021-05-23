@@ -11,7 +11,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
 .app{
   width: 100%; 
   height: 100vh; 
@@ -19,13 +18,13 @@ code {
 }
 .app-nav{
   width: 100%;
-  height: 8%; 
   z-index: 2; 
   background-color: rgba(255,255,255,0.7);
 }
 .app-nav-mobile{ 
   background-color: white;
   width: 100%;
+  padding: 0 1rem 0 1rem; 
 }
 .app-container{ 
   width: 100%;
@@ -48,4 +47,8 @@ code {
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   grid-auto-rows: 12rem;
   overflow-y: auto;
+}
+.item-name:hover{
+  cursor: pointer; 
+  font-style: italic; 
 }
