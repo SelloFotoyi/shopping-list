@@ -14,7 +14,10 @@ const Item = ({item}) => {
     setEditModal(item);
   };
   return (
-    <Card style={{maxWidth: '25rem'}} className='mb-2'>
+    <Card
+      style={{maxWidth: '25rem'}}
+      className={`mb-2 ${item.isCheck ? 'item-checked' : ''}`}
+    >
       <Card.Header className='fontweight-bold text-center bg-secondary text-white'>
         Total price:{' '}
         <span>
