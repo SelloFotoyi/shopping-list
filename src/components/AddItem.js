@@ -153,7 +153,7 @@ const AddItem = () => {
           <p className='text-center text-muted my-3'>
             <i>
               <strong>
-                Item total price: {totalPrice ? totalPrice : '0.00'}{' '}
+                Item total price: {totalPrice ? totalPrice.toFixed(2) : '0.00'}{' '}
               </strong>
             </i>
           </p>
