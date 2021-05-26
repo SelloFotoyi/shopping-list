@@ -14,6 +14,7 @@ const DeleteConfirmer = () => {
       resetTotalCheckedItems();
       closeModal();
     } else if (deleteType == 'all') {
+      resetTotalCheckedItems();
       clearItems();
       closeModal();
     }
